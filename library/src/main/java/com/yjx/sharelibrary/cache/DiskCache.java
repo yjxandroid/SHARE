@@ -147,8 +147,12 @@ public class DiskCache implements Cache {
     @Override
     public void clear() {
         File file = new File(path);
-        if (file.exists())
-            file.delete();
+        if (file.exists()) {
+            File[] files = file.listFiles();
+            for (File f : files) {
+                f.delete();
+            }
+        }
     }
 
     //写入数据
