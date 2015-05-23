@@ -39,61 +39,74 @@ public final class Share {
 
     /**
      * 设置int类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putInt(String key, int value) {
         Share.memoryCache.put(key, new Integer(value));
         Share.diskCache.put(key, new Integer(value));
     }
+
     /**
      * 设置long类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putLong(String key, long value) {
         Share.memoryCache.put(key, new Long(value));
         Share.diskCache.put(key, new Long(value));
     }
+
     /**
      * 设置boolean类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putBoolean(String key, boolean value) {
         Share.memoryCache.put(key, new Boolean(value));
         Share.diskCache.put(key, new Boolean(value));
     }
+
     /**
      * 设置String类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putString(String key, String value) {
         Share.memoryCache.put(key, value);
         Share.diskCache.put(key, value);
     }
+
     /**
      * 设置float类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putFloat(String key, float value) {
         Share.memoryCache.put(key, new Float(value));
         Share.diskCache.put(key, new Float(value));
     }
+
     /**
      * 设置double类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putDouble(String key, double value) {
         Share.memoryCache.put(key, new Double(value));
         Share.diskCache.put(key, new Double(value));
     }
+
     /**
      * 设置Object类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putObject(String key, Object value) {
@@ -103,16 +116,19 @@ public final class Share {
 
     /**
      * 设置bytes类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param bytes 值
      */
     public static void putBytes(String key, byte[] bytes) {
         Share.memoryCache.put(key, bytes);
         Share.diskCache.put(key, bytes);
     }
+
     /**
      * 设置Bitmap类型的值
-     * @param key 键
+     *
+     * @param key   键
      * @param value 值
      */
     public static void putBitmap(String key, Bitmap value) {
@@ -123,7 +139,8 @@ public final class Share {
 
     /**
      * 得到int类型的值
-     * @param key 键
+     *
+     * @param key     键
      * @param defalut 默认值
      * @return int值
      */
@@ -137,9 +154,11 @@ public final class Share {
         }
 
     }
+
     /**
      * 得到long类型的值
-     * @param key 键
+     *
+     * @param key     键
      * @param defalut 默认值
      * @return long值
      */
@@ -152,8 +171,10 @@ public final class Share {
             return value.longValue();
         }
     }
+
     /**
      * 得到String类型的值
+     *
      * @param key 键
      * @return String值
      */
@@ -166,9 +187,11 @@ public final class Share {
             return value;
         }
     }
+
     /**
      * 得到boolean类型的值
-     * @param key 键
+     *
+     * @param key     键
      * @param defalut 默认值
      * @return boolean值
      */
@@ -181,9 +204,11 @@ public final class Share {
             return value.booleanValue();
         }
     }
+
     /**
      * 得到double类型的值
-     * @param key 键
+     *
+     * @param key     键
      * @param defalut 默认值
      * @return double值
      */
@@ -196,9 +221,11 @@ public final class Share {
             return value.doubleValue();
         }
     }
+
     /**
      * 得到float类型的值
-     * @param key 键
+     *
+     * @param key     键
      * @param defalut 默认值
      * @return float值
      */
@@ -211,8 +238,10 @@ public final class Share {
             return value.floatValue();
         }
     }
+
     /**
      * 得到object类型的值
+     *
      * @param key 键
      * @return object值
      */
@@ -225,8 +254,10 @@ public final class Share {
             return object;
         }
     }
+
     /**
      * 得到bytes类型的值
+     *
      * @param key 键
      * @return bytes值
      */
@@ -238,8 +269,10 @@ public final class Share {
         }
         return bytes;
     }
+
     /**
      * 得到Bitmap类型的值
+     *
      * @param key 键
      * @return bitmap值
      */
@@ -250,5 +283,25 @@ public final class Share {
         }
         return bitmap;
     }
+
+
+    /**
+     * 清楚数据
+     */
+    public static void clearData() {
+        Share.diskCache.clear();
+        Share.memoryCache.clear();
+    }
+
+    /**
+     * 清除指定的数据
+     *
+     * @param key 键
+     */
+    public static void remove(String key) {
+        Share.diskCache.remove(key);
+        Share.memoryCache.remove(key);
+    }
+
 
 }
