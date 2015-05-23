@@ -158,6 +158,13 @@ public class DiskCache implements Cache {
         }
     }
 
+    @Override
+    public void clear() {
+        File file=new File(path);
+        if (file.exists())
+            file.delete();
+    }
+
     //写入数据
     private void write(OutputStream out, InputStream in) {
         int len = 0;

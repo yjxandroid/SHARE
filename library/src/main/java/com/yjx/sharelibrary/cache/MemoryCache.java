@@ -105,4 +105,9 @@ public class MemoryCache implements Cache {
     public void remove(String key) {
         this.hashMap.remove(key);
     }
+
+    @Override
+    public void clear() {
+        hashMap.clear();
+    }
 }

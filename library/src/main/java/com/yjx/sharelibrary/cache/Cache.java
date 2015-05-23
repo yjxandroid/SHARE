@@ -30,4 +30,6 @@ public interface Cache {
     void put(String key, Object value);
 
     void remove(String key);
+
+    void clear();
 }
