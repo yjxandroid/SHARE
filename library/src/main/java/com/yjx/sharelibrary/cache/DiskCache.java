@@ -76,48 +76,34 @@ public class DiskCache implements Cache {
     }
 
     @Override
-    public int getInt(String key, int val) {
+    public Integer getInt(String key) {
         Object obj = getObject(key);
-        if (obj == null)
-            return val;
-        else
-            return ((Integer) obj).intValue();
+        return ((Integer) obj);
     }
 
     @Override
-    public long getLong(String key, long defaultvalue) {
+    public Long getLong(String key) {
         Object obj = getObject(key);
-        if (obj == null)
-            return defaultvalue;
-        else
-            return ((Long) obj).longValue();
+        return ((Long) obj);
     }
 
     @Override
-    public double getDouble(String key, double defaultvalue) {
+    public Double getDouble(String key) {
         Object obj = getObject(key);
-        if (obj == null)
-            return defaultvalue;
-        else
-            return ((Double) obj).doubleValue();
+        return ((Double) obj);
     }
 
     @Override
-    public float getFloat(String key, float defaultvalue) {
+    public Float getFloat(String key) {
         Object obj = getObject(key);
-        if (obj == null)
-            return defaultvalue;
-        else
-            return ((Float) obj).floatValue();
+        return ((Float) obj);
     }
 
     @Override
-    public boolean getBoolean(String key, boolean defaultvalue) {
+    public Boolean getBoolean(String key) {
         Object obj = getObject(key);
-        if (obj == null)
-            return defaultvalue;
-        else
-            return ((Boolean) obj).booleanValue();
+
+        return ((Boolean) obj);
     }
 
     @Override
@@ -160,7 +146,7 @@ public class DiskCache implements Cache {
 
     @Override
     public void clear() {
-        File file=new File(path);
+        File file = new File(path);
         if (file.exists())
             file.delete();
     }

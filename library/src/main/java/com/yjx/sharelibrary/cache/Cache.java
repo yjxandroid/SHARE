@@ -16,15 +16,15 @@ public interface Cache {
 
     Object getObject(String key);
 
-    int getInt(String key, int defaultvalue);
+    Integer getInt(String key);
 
-    long getLong(String key, long defaultvalue);
+    Long getLong(String key);
 
-    double getDouble(String key, double defaultvalue);
+    Double getDouble(String key);
 
-    float getFloat(String key, float defaultvalue);
+    Float getFloat(String key);
 
-    boolean getBoolean(String key, boolean defaultvalue);
+    Boolean getBoolean(String key);
 
 
     void put(String key, Object value);

@@ -15,10 +15,10 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class MemoryCache implements Cache {
     private ConcurrentMap<String, Object> hashMap;
+
     public MemoryCache() {
         hashMap = new ConcurrentHashMap<String, Object>();
     }
-
 
 
     @Override
@@ -43,61 +43,52 @@ public class MemoryCache implements Cache {
     }
 
     @Override
-    public int getInt(String key,int val) {
-        Integer integer = (Integer) this.hashMap.get(key);
-        if (integer==null)
-            return integer;
-        return integer.intValue();
+    public Integer getInt(String key) {
+        Integer value = (Integer) this.hashMap.get(key);
+        return value;
     }
 
     @Override
-    public long getLong(String key, long defaultvalue) {
-        Long integer = (Long) this.hashMap.get(key);
-        if (integer==null)
-            return integer;
-        return integer.longValue();
+    public Long getLong(String key) {
+        Long value = (Long) this.hashMap.get(key);
+        return value;
     }
 
     @Override
-    public double getDouble(String key, double defaultvalue) {
-        Double integer = (Double) this.hashMap.get(key);
-        if (integer==null)
-            return integer;
-        return integer.doubleValue();
+    public Double getDouble(String key) {
+        Double value = (Double) this.hashMap.get(key);
+        return value;
+
     }
 
     @Override
-    public float getFloat(String key, float defaultvalue) {
-        Float integer = (Float) this.hashMap.get(key);
-        if (integer==null)
-            return integer;
-        return integer.floatValue();
+    public Float getFloat(String key) {
+        Float value = (Float) this.hashMap.get(key);
+        return value;
     }
 
     @Override
-    public boolean getBoolean(String key, boolean defaultvalue) {
-        Boolean integer = (Boolean) this.hashMap.get(key);
-        if (integer==null)
-            return integer;
-        return integer.booleanValue();
+    public Boolean getBoolean(String key) {
+        Boolean value = (Boolean) this.hashMap.get(key);
+        return value;
     }
 
 
     @Override
     public void put(String key, Object value) {
-        if (value instanceof Bitmap|| value instanceof String)
-        this.hashMap.put(key, value);
-        else if(value instanceof Integer){
+        if (value instanceof Bitmap || value instanceof String)
+            this.hashMap.put(key, value);
+        else if (value instanceof Integer) {
             this.hashMap.put(key, new Integer((int) value));
-        } else if(value instanceof Long){
+        } else if (value instanceof Long) {
             this.hashMap.put(key, new Long((long) value));
-        } else if(value instanceof Double){
+        } else if (value instanceof Double) {
             this.hashMap.put(key, new Double((double) value));
-        } else if(value instanceof Float){
+        } else if (value instanceof Float) {
             this.hashMap.put(key, new Float((float) value));
-        } else if(value instanceof Boolean){
-            this.hashMap.put(key,new Boolean((boolean)value));
-        }else
+        } else if (value instanceof Boolean) {
+            this.hashMap.put(key, new Boolean((boolean) value));
+        } else
             this.hashMap.put(key, value);
     }
 

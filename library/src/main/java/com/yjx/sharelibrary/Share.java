@@ -145,10 +145,14 @@ public final class Share {
      * @return int值
      */
     public static int getInt(String key, int defalut) {
-        Integer value = memoryCache.getInt(key, defalut);
+        Integer value = memoryCache.getInt(key);
         if (value == null) {
-            value = diskCache.getInt(key, defalut);
-            return value.intValue();
+            value = diskCache.getInt(key);
+            if (value == null) {
+                return defalut;
+            } else {
+                return value.intValue();
+            }
         } else {
             return value.intValue();
         }
@@ -163,10 +167,13 @@ public final class Share {
      * @return long值
      */
     public static long getLong(String key, long defalut) {
-        Long value = memoryCache.getLong(key, defalut);
+        Long value = memoryCache.getLong(key);
         if (value == null) {
-            value = diskCache.getLong(key, defalut);
-            return value.longValue();
+            value = diskCache.getLong(key);
+            if (value != null)
+                return value.longValue();
+            else
+                return defalut;
         } else {
             return value.longValue();
         }
@@ -196,9 +203,11 @@ public final class Share {
      * @return boolean值
      */
     public static boolean getBoolean(String key, boolean defalut) {
-        Boolean value = memoryCache.getBoolean(key, defalut);
+        Boolean value = memoryCache.getBoolean(key);
         if (value == null) {
-            value = diskCache.getBoolean(key, defalut);
+            value = diskCache.getBoolean(key);
+            if (value == null)
+                return defalut;
             return value.booleanValue();
         } else {
             return value.booleanValue();
@@ -213,9 +222,11 @@ public final class Share {
      * @return double值
      */
     public static double getDouble(String key, double defalut) {
-        Double value = memoryCache.getDouble(key, defalut);
+        Double value = memoryCache.getDouble(key);
         if (value == null) {
-            value = diskCache.getDouble(key, defalut);
+            value = diskCache.getDouble(key);
+            if (value == null)
+                return defalut;
             return value.doubleValue();
         } else {
             return value.doubleValue();
@@ -230,9 +241,11 @@ public final class Share {
      * @return float值
      */
     public static float getFloat(String key, float defalut) {
-        Float value = memoryCache.getFloat(key, defalut);
+        Float value = memoryCache.getFloat(key);
         if (value == null) {
-            value = diskCache.getFloat(key, defalut);
+            value = diskCache.getFloat(key);
+            if (value == null)
+                return defalut;
             return value.floatValue();
         } else {
             return value.floatValue();
