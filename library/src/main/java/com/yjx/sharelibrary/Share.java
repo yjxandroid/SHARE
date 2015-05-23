@@ -3,7 +3,6 @@ package com.yjx.sharelibrary;/**
  */
 
 import android.graphics.Bitmap;
-import android.os.Handler;
 
 import com.yjx.sharelibrary.cache.DiskCache;
 import com.yjx.sharelibrary.cache.MemoryCache;
@@ -15,8 +14,6 @@ import com.yjx.sharelibrary.cache.MemoryCache;
  * 主体类
  */
 public final class Share {
-    //任务处理
-    private static Handler handler;
     //名字
     private static String shareName;
     //缓存大小
@@ -28,10 +25,10 @@ public final class Share {
     /**
      * 初始化
      */
-    public static void init(String shareName, int cacheSize, String path, Handler handler) {
+    public static void init(String shareName, int cacheSize, String path) {
         Share.shareName = shareName;
         Share.cacheSize = cacheSize;
-        Share.handler = handler;
+
         Share.memoryCache = new MemoryCache();
         Share.diskCache = new DiskCache(cacheSize, path, 1);
 
