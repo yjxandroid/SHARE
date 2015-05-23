@@ -41,15 +41,18 @@ public class MainActivity extends ActionBarActivity {
         Share.putFloat("float", 2.2f);
         Share.putObject("obj", people);
         Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.dd);
-        Share.putBitmap("bitmap",bitmap);
+        Share.putBitmap("bitmap", bitmap);
         textView1.setText(Share.getString("str"));
-        textView2.setText(Share.getInt("int",0)+"");
-        textView3.setText(Share.getDouble("double",0.0d)+"");
-        textView4.setText(Share.getFloat("float",0.0f)+"");
+        textView2.setText(Share.getInt("int", 0)+"");
+        textView3.setText(Share.getDouble("double", 0.0d)+"");
+        textView4.setText(Share.getFloat("float", 0.0f)+"");
         textView5.setText(Share.getLong("long",0)+"");
         People pp= (People) Share.getObject("obj");
-       textView6.setText(pp.getAge()+"  "+pp.getName());
+        textView6.setText(pp.getAge()+"  "+pp.getName());
         iv.setImageBitmap(Share.getBitmap("bitmap"));
+
+        Share.clearData();
+        textView2.setText(Share.getInt("int", 0) + "");
 
 
     }
