@@ -4,7 +4,8 @@ package com.yjx.sharelibrary.cache;/**
 
 import android.graphics.Bitmap;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * User: YJX
@@ -13,9 +14,9 @@ import java.util.HashMap;
  * 内存缓存
  */
 public class MemoryCache implements Cache {
-    private HashMap<String, Object> hashMap;
+    private ConcurrentMap<String, Object> hashMap;
     public MemoryCache() {
-        hashMap = new HashMap<String, Object>();
+        hashMap = new ConcurrentHashMap<String, Object>();
     }
 
 
