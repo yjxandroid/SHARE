@@ -132,7 +132,8 @@ public class DiskCache implements Cache {
             OutputStream outputStream = editor.newOutputStream(0);
             if (value instanceof Bitmap) {
                 Bitmap bitmap = (Bitmap) value;
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                outputStream.write(Bitmap2Bytes(bitmap));
+                outputStream.close();
             } else if (value instanceof String) {
                 outputStream.write(((String) value).getBytes());
                 outputStream.close();
@@ -202,6 +203,20 @@ public class DiskCache implements Cache {
             e.printStackTrace();
         }
         return out.toByteArray();
+    }
+    private  byte[] Bitmap2Bytes(Bitmap bm) {
+        ByteArrayOutputStream baos =new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        try {
+            baos.flush();
+            baos.close();
+            if (!bm.isRecycled()){
+                bm.recycle();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return baos.toByteArray();
     }
 
 
