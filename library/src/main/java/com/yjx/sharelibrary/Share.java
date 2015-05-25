@@ -155,6 +155,7 @@ public final class Share {
             if (value == null) {
                 return defalut;
             } else {
+                memoryCache.put(key,value);
                 return value.intValue();
             }
         } else {
@@ -175,8 +176,10 @@ public final class Share {
         if (value == null) {
             value = diskCache.getLong(key);
 
-            if (value != null)
+            if (value != null) {
+                memoryCache.put(key,value);
                 return value.longValue();
+            }
             else
                 return defalut;
         } else {
@@ -194,7 +197,8 @@ public final class Share {
         String value = memoryCache.getString(key);
         if (value == null) {
             value = diskCache.getString(key);
-
+            if (value!=null)
+                memoryCache.put(key,value);
             return value;
         } else {
             return value;
@@ -214,6 +218,7 @@ public final class Share {
             value = diskCache.getBoolean(key);
             if (value == null)
                 return defalut;
+            memoryCache.put(key,value);
             return value.booleanValue();
         } else {
             return value.booleanValue();
@@ -234,6 +239,7 @@ public final class Share {
 
             if (value == null)
                 return defalut;
+            memoryCache.put(key,value);
             return value.doubleValue();
         } else {
             return value.doubleValue();
@@ -253,6 +259,7 @@ public final class Share {
             value = diskCache.getFloat(key);
             if (value == null)
                 return defalut;
+            memoryCache.put(key,value);
             return value.floatValue();
         } else {
             return value.floatValue();
@@ -269,6 +276,8 @@ public final class Share {
         Object object = memoryCache.getObject(key);
         if (object == null) {
             object = diskCache.getObject(key);
+            if (object!=null)
+                memoryCache.put(key,object);
             return object;
         } else {
             return object;
@@ -287,6 +296,8 @@ public final class Share {
         if (bytes == null) {
             bytes = diskCache.getBytes(key);
         }
+        if (bytes!=null)
+            memoryCache.put(key,bytes);
         return bytes;
     }
 
@@ -302,6 +313,9 @@ public final class Share {
             bitmap = diskCache.getBitmap(key);
 
         }
+        if (bitmap!=null)
+            memoryCache.put(key,bitmap);
+
         return bitmap;
     }
 
