@@ -135,11 +135,11 @@ public class DiskCache implements Cache {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
             } else if (value instanceof String) {
                 outputStream.write(((String) value).getBytes());
-//                outputStream.close();
+                outputStream.close();
             } else {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
                 objectOutputStream.writeObject(value);
-//                outputStream.close();
+                outputStream.close();
                 objectOutputStream.close();
 
             }
