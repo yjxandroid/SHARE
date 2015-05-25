@@ -28,49 +28,74 @@ public class MemoryCache implements Cache {
 
     @Override
     public String getString(String key) {
-
-        return String.valueOf(this.hashMap.get(key));
+        if (hashMap.containsKey(key))
+            return String.valueOf(this.hashMap.get(key));
+        return null;
     }
 
     @Override
     public byte[] getBytes(String key) {
-        return (byte[]) this.hashMap.get(key);
+        if (hashMap.containsKey(key))
+            return (byte[]) this.hashMap.get(key);
+        return null;
     }
 
     @Override
     public Object getObject(String key) {
-        return this.hashMap.get(key);
+        if (hashMap.containsKey(key))
+            return this.hashMap.get(key);
+        return null;
     }
 
     @Override
     public Integer getInt(String key) {
-        Integer value = (Integer) this.hashMap.get(key);
-        return value;
+        if (hashMap.containsKey(key)) {
+            Integer value = (Integer) this.hashMap.get(key);
+            return value;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public Long getLong(String key) {
-        Long value = (Long) this.hashMap.get(key);
-        return value;
+        if (hashMap.containsKey(key)) {
+            Long value = (Long) this.hashMap.get(key);
+            return value;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public Double getDouble(String key) {
-        Double value = (Double) this.hashMap.get(key);
-        return value;
+        if (hashMap.containsKey(key)) {
+            Double value = (Double) this.hashMap.get(key);
+            return value;
+        } else {
+            return null;
+        }
 
     }
 
     @Override
     public Float getFloat(String key) {
-        Float value = (Float) this.hashMap.get(key);
-        return value;
+        if (hashMap.containsKey(key)) {
+            Float value = (Float) this.hashMap.get(key);
+            return value;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public Boolean getBoolean(String key) {
-        Boolean value = (Boolean) this.hashMap.get(key);
-        return value;
+        if (hashMap.containsKey(key)) {
+            Boolean value = (Boolean) this.hashMap.get(key);
+            return value;
+        } else {
+            return null;
+        }
     }
 
 
@@ -94,7 +119,8 @@ public class MemoryCache implements Cache {
 
     @Override
     public void remove(String key) {
-        this.hashMap.remove(key);
+        if (hashMap.containsKey(key))
+            this.hashMap.remove(key);
     }
 
     @Override

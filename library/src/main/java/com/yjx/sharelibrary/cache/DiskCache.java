@@ -58,7 +58,11 @@ public class DiskCache implements Cache {
     @Override
     public byte[] getBytes(String key) {
         try {
-            return write(this.diskLruCache.get(key).getInputStream(0));
+            DiskLruCache.Snapshot snapshot = this.diskLruCache.get(key);
+            if (snapshot != null && snapshot.getInputStream(0) != null)
+                return write(this.diskLruCache.get(key).getInputStream(0));
+            else
+                return null;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -68,8 +72,13 @@ public class DiskCache implements Cache {
     @Override
     public Object getObject(String key) {
         try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(this.diskLruCache.get(key).getInputStream(0));
-            return objectInputStream.readObject();
+            DiskLruCache.Snapshot snapshot = this.diskLruCache.get(key);
+            if (snapshot != null && snapshot.getInputStream(0) != null) {
+                ObjectInputStream objectInputStream = new ObjectInputStream(this.diskLruCache.get(key).getInputStream(0));
+                return objectInputStream.readObject();
+            } else {
+                return null;
+            }
         } catch (Exception e) {
             return null;
         }
@@ -78,32 +87,42 @@ public class DiskCache implements Cache {
     @Override
     public Integer getInt(String key) {
         Object obj = getObject(key);
-        return ((Integer) obj);
+        if (obj != null)
+            return ((Integer) obj);
+        return null;
     }
 
     @Override
     public Long getLong(String key) {
+
         Object obj = getObject(key);
-        return ((Long) obj);
+        if (obj != null)
+            return ((Long) obj);
+        return null;
     }
 
     @Override
     public Double getDouble(String key) {
         Object obj = getObject(key);
-        return ((Double) obj);
+        if (obj != null)
+            return ((Double) obj);
+        return null;
     }
 
     @Override
     public Float getFloat(String key) {
         Object obj = getObject(key);
-        return ((Float) obj);
+        if (obj != null)
+            return ((Float) obj);
+        return null;
     }
 
     @Override
     public Boolean getBoolean(String key) {
         Object obj = getObject(key);
-
-        return ((Boolean) obj);
+        if (obj != null)
+            return ((Boolean) obj);
+        return null;
     }
 
     @Override
@@ -111,17 +130,16 @@ public class DiskCache implements Cache {
         try {
             DiskLruCache.Editor editor = this.diskLruCache.edit(key);
             OutputStream outputStream = editor.newOutputStream(0);
-
             if (value instanceof Bitmap) {
                 Bitmap bitmap = (Bitmap) value;
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
             } else if (value instanceof String) {
                 outputStream.write(((String) value).getBytes());
-                outputStream.close();
+//                outputStream.close();
             } else {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
                 objectOutputStream.writeObject(value);
-                outputStream.close();
+//                outputStream.close();
                 objectOutputStream.close();
 
             }
