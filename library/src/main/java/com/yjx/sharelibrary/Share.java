@@ -359,6 +359,13 @@ public final class Share {
 
     //异步方法
 
+    /**
+     * 异步设置Bitmap类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
     public static void putBitmapAsync(final String key, final Bitmap value, final Callback callback) {
         new AsyncTask<Void, Integer, Boolean>() {
             @Override
@@ -366,6 +373,7 @@ public final class Share {
                 putBitmap(key, value);
                 return true;
             }
+
             @Override
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
@@ -376,13 +384,21 @@ public final class Share {
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public static void putStringAsync(final String key,final String value,final Callback callback){
+    /**
+     * 异步设置String类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putStringAsync(final String key, final String value, final Callback callback) {
         new AsyncTask<Void, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
                 putString(key, value);
                 return true;
             }
+
             @Override
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
@@ -394,13 +410,21 @@ public final class Share {
 
     }
 
-    public static void putObjectAsync(final String key,final Object value,final Callback callback){
+    /**
+     * 异步设置Object类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putObjectAsync(final String key, final Object value, final Callback callback) {
         new AsyncTask<Void, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
                 putObject(key, value);
                 return true;
             }
+
             @Override
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
@@ -412,13 +436,21 @@ public final class Share {
 
     }
 
-    public static void putLongAsync(final String key,final long value,final Callback callback){
+    /**
+     * 异步设置long类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putLongAsync(final String key, final long value, final Callback callback) {
         new AsyncTask<Void, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
                 putLong(key, value);
                 return true;
             }
+
             @Override
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
@@ -429,7 +461,14 @@ public final class Share {
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public static void putIntAsync(final String key,final int value,final Callback callback){
+    /**
+     * 异步设置int类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putIntAsync(final String key, final int value, final Callback callback) {
 
         new AsyncTask<Void, Integer, Boolean>() {
             @Override
@@ -437,6 +476,7 @@ public final class Share {
                 putInt(key, value);
                 return true;
             }
+
             @Override
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
@@ -448,29 +488,21 @@ public final class Share {
     }
 
 
-    public static void putDoubleAsync(final String key,final double value,final  Callback callback){
+    /**
+     * 异步设置double类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putDoubleAsync(final String key, final double value, final Callback callback) {
         new AsyncTask<Void, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
                 putDouble(key, value);
                 return true;
             }
-            @Override
-            protected void onPostExecute(Boolean success) {
-                super.onPreExecute();
-                if (callback != null) {
-                    callback.apply();
-                }
-            }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
-    public static void putFloatAsync(final String key,final float value,final  Callback callback){
-        new AsyncTask<Void, Integer, Boolean>() {
-            @Override
-            protected Boolean doInBackground(Void... params) {
-                putFloat(key, value);
-                return true;
-            }
+
             @Override
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
@@ -481,29 +513,71 @@ public final class Share {
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public static void putBytesAsync(final String key,final byte[] value,final Callback callback){
-            new AsyncTask<Void, Integer, Boolean>() {
-                @Override
-                protected Boolean doInBackground(Void... params) {
-                    putBytes(key, value);
-                    return true;
+    /**
+     * 异步设置float类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putFloatAsync(final String key, final float value, final Callback callback) {
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putFloat(key, value);
+                return true;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
                 }
-                @Override
-                protected void onPostExecute(Boolean success) {
-                    super.onPreExecute();
-                    if (callback != null) {
-                        callback.apply();
-                    }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    /**
+     * 异步设置byte[]类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putBytesAsync(final String key, final byte[] value, final Callback callback) {
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putBytes(key, value);
+                return true;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
                 }
-            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        }
-    public static void putBooleanAsync(final String key,final boolean value,final  Callback callback){
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    /**
+     * 异步设置boolean类型的值
+     *
+     * @param key      键
+     * @param value    值
+     * @param callback 回调函数
+     */
+    public static void putBooleanAsync(final String key, final boolean value, final Callback callback) {
         new AsyncTask<Void, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
                 putBoolean(key, value);
                 return true;
             }
+
             @Override
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
