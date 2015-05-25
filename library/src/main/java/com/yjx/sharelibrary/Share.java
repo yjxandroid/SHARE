@@ -43,9 +43,8 @@ public final class Share {
      */
     public static void putInt(String key, int value) {
         Share.memoryCache.put(key, new Integer(value));
-        synchronized (diskCache) {
-            Share.diskCache.put(key, new Integer(value));
-        }
+        Share.diskCache.put(key, new Integer(value));
+
     }
 
     /**
@@ -56,9 +55,7 @@ public final class Share {
      */
     public static void putLong(String key, long value) {
         Share.memoryCache.put(key, new Long(value));
-        synchronized (diskCache) {
-            Share.diskCache.put(key, new Long(value));
-        }
+        Share.diskCache.put(key, new Long(value));
     }
 
     /**
@@ -69,10 +66,9 @@ public final class Share {
      */
     public static void putBoolean(String key, boolean value) {
         Share.memoryCache.put(key, new Boolean(value));
-        synchronized (diskCache) {
-            Share.diskCache.put(key, new Boolean(value));
-        }
+        Share.diskCache.put(key, new Boolean(value));
     }
+
 
     /**
      * 设置String类型的值
@@ -82,9 +78,7 @@ public final class Share {
      */
     public static void putString(String key, String value) {
         Share.memoryCache.put(key, value);
-        synchronized (diskCache) {
-            Share.diskCache.put(key, value);
-        }
+        Share.diskCache.put(key, value);
     }
 
     /**
@@ -95,9 +89,7 @@ public final class Share {
      */
     public static void putFloat(String key, float value) {
         Share.memoryCache.put(key, new Float(value));
-        synchronized (diskCache) {
-            Share.diskCache.put(key, new Float(value));
-        }
+        Share.diskCache.put(key, new Float(value));
     }
 
     /**
@@ -108,9 +100,7 @@ public final class Share {
      */
     public static void putDouble(String key, double value) {
         Share.memoryCache.put(key, new Double(value));
-        synchronized (diskCache) {
-            Share.diskCache.put(key, new Double(value));
-        }
+        Share.diskCache.put(key, new Double(value));
     }
 
     /**
@@ -121,9 +111,8 @@ public final class Share {
      */
     public static void putObject(String key, Object value) {
         Share.memoryCache.put(key, value);
-        synchronized (diskCache) {
-            Share.diskCache.put(key, value);
-        }
+        Share.diskCache.put(key, value);
+
     }
 
     /**
@@ -134,9 +123,8 @@ public final class Share {
      */
     public static void putBytes(String key, byte[] bytes) {
         Share.memoryCache.put(key, bytes);
-        synchronized (diskCache) {
-            Share.diskCache.put(key, bytes);
-        }
+        Share.diskCache.put(key, bytes);
+
     }
 
     /**
@@ -147,9 +135,8 @@ public final class Share {
      */
     public static void putBitmap(String key, Bitmap value) {
         Share.memoryCache.put(key, value);
-        synchronized (diskCache) {
-            Share.diskCache.put(key, value);
-        }
+        Share.diskCache.put(key, value);
+
     }
 
 
@@ -163,9 +150,8 @@ public final class Share {
     public static int getInt(String key, int defalut) {
         Integer value = memoryCache.getInt(key);
         if (value == null) {
-            synchronized (diskCache) {
-                value = diskCache.getInt(key);
-            }
+            value = diskCache.getInt(key);
+
             if (value == null) {
                 return defalut;
             } else {
@@ -187,9 +173,8 @@ public final class Share {
     public static long getLong(String key, long defalut) {
         Long value = memoryCache.getLong(key);
         if (value == null) {
-            synchronized (diskCache) {
-                value = diskCache.getLong(key);
-            }
+            value = diskCache.getLong(key);
+
             if (value != null)
                 return value.longValue();
             else
@@ -208,9 +193,8 @@ public final class Share {
     public static String getString(String key) {
         String value = memoryCache.getString(key);
         if (value == null) {
-            synchronized (diskCache) {
-                value = diskCache.getString(key);
-            }
+            value = diskCache.getString(key);
+
             return value;
         } else {
             return value;
@@ -227,9 +211,7 @@ public final class Share {
     public static boolean getBoolean(String key, boolean defalut) {
         Boolean value = memoryCache.getBoolean(key);
         if (value == null) {
-            synchronized (diskCache) {
-                value = diskCache.getBoolean(key);
-            }
+            value = diskCache.getBoolean(key);
             if (value == null)
                 return defalut;
             return value.booleanValue();
@@ -248,9 +230,8 @@ public final class Share {
     public static double getDouble(String key, double defalut) {
         Double value = memoryCache.getDouble(key);
         if (value == null) {
-            synchronized (diskCache) {
-                value = diskCache.getDouble(key);
-            }
+            value = diskCache.getDouble(key);
+
             if (value == null)
                 return defalut;
             return value.doubleValue();
@@ -269,9 +250,7 @@ public final class Share {
     public static float getFloat(String key, float defalut) {
         Float value = memoryCache.getFloat(key);
         if (value == null) {
-            synchronized (diskCache) {
-                value = diskCache.getFloat(key);
-            }
+            value = diskCache.getFloat(key);
             if (value == null)
                 return defalut;
             return value.floatValue();
@@ -289,9 +268,7 @@ public final class Share {
     public static Object getObject(String key) {
         Object object = memoryCache.getObject(key);
         if (object == null) {
-            synchronized (diskCache) {
-                object = diskCache.getObject(key);
-            }
+            object = diskCache.getObject(key);
             return object;
         } else {
             return object;
@@ -308,9 +285,7 @@ public final class Share {
     public static byte[] getBytes(String key) {
         byte[] bytes = memoryCache.getBytes(key);
         if (bytes == null) {
-            synchronized (diskCache) {
-                bytes = diskCache.getBytes(key);
-            }
+            bytes = diskCache.getBytes(key);
         }
         return bytes;
     }
@@ -324,9 +299,8 @@ public final class Share {
     public static Bitmap getBitmap(String key) {
         Bitmap bitmap = memoryCache.getBitmap(key);
         if (bitmap == null) {
-            synchronized (diskCache) {
-                bitmap = diskCache.getBitmap(key);
-            }
+            bitmap = diskCache.getBitmap(key);
+
         }
         return bitmap;
     }
@@ -337,10 +311,8 @@ public final class Share {
      */
     public static void clearData() {
         Share.memoryCache.clear();
-        synchronized (diskCache) {
-            Share.diskCache.clear();
+        Share.diskCache.clear();
 
-        }
     }
 
     /**
@@ -349,9 +321,7 @@ public final class Share {
      * @param key 键
      */
     public static void remove(String key) {
-        synchronized (diskCache) {
-            Share.diskCache.remove(key);
-        }
+        Share.diskCache.remove(key);
 
         Share.memoryCache.remove(key);
     }
@@ -582,6 +552,7 @@ public final class Share {
             protected void onPostExecute(Boolean success) {
                 super.onPreExecute();
                 if (callback != null) {
+
                     callback.apply();
                 }
             }
