@@ -3,6 +3,7 @@ package com.yjx.sharelibrary;/**
  */
 
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 
 import com.yjx.sharelibrary.cache.DiskCache;
 import com.yjx.sharelibrary.cache.MemoryCache;
@@ -42,7 +43,9 @@ public final class Share {
      */
     public static void putInt(String key, int value) {
         Share.memoryCache.put(key, new Integer(value));
-        Share.diskCache.put(key, new Integer(value));
+        synchronized (diskCache) {
+            Share.diskCache.put(key, new Integer(value));
+        }
     }
 
     /**
@@ -53,7 +56,9 @@ public final class Share {
      */
     public static void putLong(String key, long value) {
         Share.memoryCache.put(key, new Long(value));
-        Share.diskCache.put(key, new Long(value));
+        synchronized (diskCache) {
+            Share.diskCache.put(key, new Long(value));
+        }
     }
 
     /**
@@ -64,7 +69,9 @@ public final class Share {
      */
     public static void putBoolean(String key, boolean value) {
         Share.memoryCache.put(key, new Boolean(value));
-        Share.diskCache.put(key, new Boolean(value));
+        synchronized (diskCache) {
+            Share.diskCache.put(key, new Boolean(value));
+        }
     }
 
     /**
@@ -75,7 +82,9 @@ public final class Share {
      */
     public static void putString(String key, String value) {
         Share.memoryCache.put(key, value);
-        Share.diskCache.put(key, value);
+        synchronized (diskCache) {
+            Share.diskCache.put(key, value);
+        }
     }
 
     /**
@@ -86,7 +95,9 @@ public final class Share {
      */
     public static void putFloat(String key, float value) {
         Share.memoryCache.put(key, new Float(value));
-        Share.diskCache.put(key, new Float(value));
+        synchronized (diskCache) {
+            Share.diskCache.put(key, new Float(value));
+        }
     }
 
     /**
@@ -97,7 +108,9 @@ public final class Share {
      */
     public static void putDouble(String key, double value) {
         Share.memoryCache.put(key, new Double(value));
-        Share.diskCache.put(key, new Double(value));
+        synchronized (diskCache) {
+            Share.diskCache.put(key, new Double(value));
+        }
     }
 
     /**
@@ -108,7 +121,9 @@ public final class Share {
      */
     public static void putObject(String key, Object value) {
         Share.memoryCache.put(key, value);
-        Share.diskCache.put(key, value);
+        synchronized (diskCache) {
+            Share.diskCache.put(key, value);
+        }
     }
 
     /**
@@ -119,7 +134,9 @@ public final class Share {
      */
     public static void putBytes(String key, byte[] bytes) {
         Share.memoryCache.put(key, bytes);
-        Share.diskCache.put(key, bytes);
+        synchronized (diskCache) {
+            Share.diskCache.put(key, bytes);
+        }
     }
 
     /**
@@ -130,7 +147,9 @@ public final class Share {
      */
     public static void putBitmap(String key, Bitmap value) {
         Share.memoryCache.put(key, value);
-        Share.diskCache.put(key, value);
+        synchronized (diskCache) {
+            Share.diskCache.put(key, value);
+        }
     }
 
 
@@ -144,7 +163,9 @@ public final class Share {
     public static int getInt(String key, int defalut) {
         Integer value = memoryCache.getInt(key);
         if (value == null) {
-            value = diskCache.getInt(key);
+            synchronized (diskCache) {
+                value = diskCache.getInt(key);
+            }
             if (value == null) {
                 return defalut;
             } else {
@@ -166,7 +187,9 @@ public final class Share {
     public static long getLong(String key, long defalut) {
         Long value = memoryCache.getLong(key);
         if (value == null) {
-            value = diskCache.getLong(key);
+            synchronized (diskCache) {
+                value = diskCache.getLong(key);
+            }
             if (value != null)
                 return value.longValue();
             else
@@ -185,8 +208,10 @@ public final class Share {
     public static String getString(String key) {
         String value = memoryCache.getString(key);
         if (value == null) {
-            return value = diskCache.getString(key);
-
+            synchronized (diskCache) {
+                value = diskCache.getString(key);
+            }
+            return value;
         } else {
             return value;
         }
@@ -202,7 +227,9 @@ public final class Share {
     public static boolean getBoolean(String key, boolean defalut) {
         Boolean value = memoryCache.getBoolean(key);
         if (value == null) {
-            value = diskCache.getBoolean(key);
+            synchronized (diskCache) {
+                value = diskCache.getBoolean(key);
+            }
             if (value == null)
                 return defalut;
             return value.booleanValue();
@@ -221,7 +248,9 @@ public final class Share {
     public static double getDouble(String key, double defalut) {
         Double value = memoryCache.getDouble(key);
         if (value == null) {
-            value = diskCache.getDouble(key);
+            synchronized (diskCache) {
+                value = diskCache.getDouble(key);
+            }
             if (value == null)
                 return defalut;
             return value.doubleValue();
@@ -240,7 +269,9 @@ public final class Share {
     public static float getFloat(String key, float defalut) {
         Float value = memoryCache.getFloat(key);
         if (value == null) {
-            value = diskCache.getFloat(key);
+            synchronized (diskCache) {
+                value = diskCache.getFloat(key);
+            }
             if (value == null)
                 return defalut;
             return value.floatValue();
@@ -258,7 +289,9 @@ public final class Share {
     public static Object getObject(String key) {
         Object object = memoryCache.getObject(key);
         if (object == null) {
-            object = diskCache.getObject(key);
+            synchronized (diskCache) {
+                object = diskCache.getObject(key);
+            }
             return object;
         } else {
             return object;
@@ -275,7 +308,9 @@ public final class Share {
     public static byte[] getBytes(String key) {
         byte[] bytes = memoryCache.getBytes(key);
         if (bytes == null) {
-            bytes = diskCache.getBytes(key);
+            synchronized (diskCache) {
+                bytes = diskCache.getBytes(key);
+            }
         }
         return bytes;
     }
@@ -289,7 +324,9 @@ public final class Share {
     public static Bitmap getBitmap(String key) {
         Bitmap bitmap = memoryCache.getBitmap(key);
         if (bitmap == null) {
-            bitmap = diskCache.getBitmap(key);
+            synchronized (diskCache) {
+                bitmap = diskCache.getBitmap(key);
+            }
         }
         return bitmap;
     }
@@ -299,8 +336,11 @@ public final class Share {
      * 清楚数据
      */
     public static void clearData() {
-        Share.diskCache.clear();
         Share.memoryCache.clear();
+        synchronized (diskCache) {
+            Share.diskCache.clear();
+
+        }
     }
 
     /**
@@ -309,8 +349,176 @@ public final class Share {
      * @param key 键
      */
     public static void remove(String key) {
-        Share.diskCache.remove(key);
+        synchronized (diskCache) {
+            Share.diskCache.remove(key);
+        }
+
         Share.memoryCache.remove(key);
+    }
+
+
+    //异步方法
+
+    public static void putBitmapAsync(final String key, final Bitmap value, final Callback callback) {
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putBitmap(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public static void putStringAsync(final String key,final String value,final Callback callback){
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putString(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    }
+
+    public static void putObjectAsync(final String key,final Object value,final Callback callback){
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putObject(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    }
+
+    public static void putLongAsync(final String key,final long value,final Callback callback){
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putLong(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public static void putIntAsync(final String key,final int value,final Callback callback){
+
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putInt(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+
+    public static void putDoubleAsync(final String key,final double value,final  Callback callback){
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putDouble(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+    public static void putFloatAsync(final String key,final float value,final  Callback callback){
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putFloat(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public static void putBytesAsync(final String key,final byte[] value,final Callback callback){
+            new AsyncTask<Void, Integer, Boolean>() {
+                @Override
+                protected Boolean doInBackground(Void... params) {
+                    putBytes(key, value);
+                    return true;
+                }
+                @Override
+                protected void onPostExecute(Boolean success) {
+                    super.onPreExecute();
+                    if (callback != null) {
+                        callback.apply();
+                    }
+                }
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }
+    public static void putBooleanAsync(final String key,final boolean value,final  Callback callback){
+        new AsyncTask<Void, Integer, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                putBoolean(key, value);
+                return true;
+            }
+            @Override
+            protected void onPostExecute(Boolean success) {
+                super.onPreExecute();
+                if (callback != null) {
+                    callback.apply();
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    /**
+     * 回调接口
+     */
+    public interface Callback {
+        void apply();
     }
 
 
